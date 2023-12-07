@@ -1,10 +1,9 @@
 import useQuiosco from "../hooks/useQuiosco"
+import ResumenProducto from "./ResumenProducto";
 
 export default function Resumen() {
 
   const { pedido } = useQuiosco();
-
-  console.log(pedido);
 
   return (
     <aside className="w-72 h-screen overflow-y-scroll p-5">
@@ -20,7 +19,12 @@ export default function Resumen() {
             No hay elementos en tu pedido aún
           </p>
         ) : (
-          <p>Si hay algo</p>
+          pedido.map(producto => (
+            <ResumenProducto
+              key={producto.id} 
+              producto={producto}
+            />
+          ))
         )}
       </div>
 
